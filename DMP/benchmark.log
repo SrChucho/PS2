@@ -1,0 +1,84 @@
+Starting Dynare (version 5.5).
+Calling Dynare with arguments: noclearall
+Starting preprocessing of the model file ...
+Found 6 equation(s).
+Evaluating expressions...done
+Computing static model derivatives (order 1).
+Computing dynamic model derivatives (order 1).
+Processing outputs ...
+done
+Preprocessing completed.
+
+
+
+
+
+Residuals of the static equations:
+
+Equation number 1 : 0 : S
+Equation number 2 : 0 : 2
+Equation number 3 : -0.3206 : lambdaw
+Equation number 4 : 0 : lambdaf
+Equation number 5 : 0 : kappa
+Equation number 6 : 0 : theta
+
+
+
+STEADY-STATE RESULTS:
+
+S       		 0.487798
+lambdaw 		 1.14738
+lambdaf 		 1.14738
+kappa   		 0.0972282
+z       		 1
+theta   		 1
+
+MODEL SUMMARY
+
+  Number of variables:         6
+  Number of stochastic shocks: 1
+  Number of state variables:   1
+  Number of jumpers:           1
+  Number of static variables:  4
+
+
+MATRIX OF COVARIANCE OF EXOGENOUS SHOCKS
+Variables          ez
+ez           1.000000
+
+POLICY AND TRANSITION FUNCTIONS
+                                   S         lambdaw         lambdaf           kappa               z           theta
+Constant                    0.487798        1.147380        1.147380        0.097228        1.000000        1.000000
+z(-1)                       2.959029       -3.449652       -3.449652        0.584640        0.991258               0
+ez                          0.014926       -0.017400       -0.017400        0.002949        0.005000               0
+
+
+THEORETICAL MOMENTS
+VARIABLE         MEAN  STD. DEV.   VARIANCE
+S              0.4878     0.1131     0.0128
+lambdaw        1.1474     0.1319     0.0174
+lambdaf        1.1474     0.1319     0.0174
+kappa          0.0972     0.0224     0.0005
+z              1.0000     0.0379     0.0014
+theta          1.0000     0.0000     0.0000
+
+
+
+MATRIX OF CORRELATIONS
+Variables          S  lambdaw  lambdaf    kappa        z
+S             1.0000  -1.0000  -1.0000   1.0000   1.0000
+lambdaw      -1.0000   1.0000   1.0000  -1.0000  -1.0000
+lambdaf      -1.0000   1.0000   1.0000  -1.0000  -1.0000
+kappa         1.0000  -1.0000  -1.0000   1.0000   1.0000
+z             1.0000  -1.0000  -1.0000   1.0000   1.0000
+
+
+
+COEFFICIENTS OF AUTOCORRELATION
+Order           1       2       3       4       5
+S          0.9913  0.9826  0.9740  0.9655  0.9570
+lambdaw    0.9913  0.9826  0.9740  0.9655  0.9570
+lambdaf    0.9913  0.9826  0.9740  0.9655  0.9570
+kappa      0.9913  0.9826  0.9740  0.9655  0.9570
+z          0.9913  0.9826  0.9740  0.9655  0.9570
+Total computing time : 0h00m00s
