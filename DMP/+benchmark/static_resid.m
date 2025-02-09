@@ -18,7 +18,7 @@ function residual = static_resid(T, y, x, params, T_flag)
 if T_flag
     T = benchmark.static_resid_tt(T, y, x, params);
 end
-residual = zeros(6, 1);
+residual = zeros(5, 1);
 lhs = y(1);
 rhs = y(5)-params(4)+y(1)*(1-params(2)-params(3)*y(2))*params(1);
 residual(1) = lhs - rhs;
@@ -26,17 +26,14 @@ lhs = log(y(5));
 rhs = log(y(5))*params(5)+params(6)*x(1);
 residual(2) = lhs - rhs;
 lhs = y(2);
-rhs = T(3)*T(4)/params(7);
+rhs = params(8)*y(4)^(1-params(7));
 residual(3) = lhs - rhs;
 lhs = y(3);
-rhs = y(2)/y(6);
+rhs = T(1);
 residual(4) = lhs - rhs;
-lhs = y(4);
-rhs = y(1)*params(1)*params(8)*(1-params(3));
+lhs = params(9);
+rhs = y(1)*params(1)*T(1)*(1-params(3));
 residual(5) = lhs - rhs;
-lhs = y(6);
-rhs = T(5)*T(6);
-residual(6) = lhs - rhs;
 if ~isreal(residual)
   residual = real(residual)+imag(residual).^2;
 end

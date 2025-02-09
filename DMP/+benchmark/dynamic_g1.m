@@ -22,24 +22,19 @@ function g1 = dynamic_g1(T, y, x, params, steady_state, it_, T_flag)
 if T_flag
     T = benchmark.dynamic_g1_tt(T, y, x, params, steady_state, it_);
 end
-g1 = zeros(6, 9);
+g1 = zeros(5, 8);
 g1(1,2)=1;
-g1(1,8)=(-((1-params(2)-params(3)*y(3))*params(1)));
-g1(1,3)=(-(y(8)*params(1)*(-params(3))));
+g1(1,7)=(-((1-params(2)-params(3)*y(3))*params(1)));
+g1(1,3)=(-(y(7)*params(1)*(-params(3))));
 g1(1,6)=(-1);
 g1(2,1)=(-(params(5)*1/y(1)));
 g1(2,6)=1/y(6);
-g1(2,9)=(-params(6));
-g1(3,8)=(-(T(3)*params(1)*getPowerDeriv(params(1)*y(8),1-params(7),1)/params(7)));
+g1(2,8)=(-params(6));
 g1(3,3)=1;
-g1(3,5)=(-(T(4)*T(2)*(-(1-params(3)))/(y(5)*y(5))*getPowerDeriv((1-params(3))/y(5),(1-params(7))/params(7),1)/params(7)));
-g1(4,3)=(-(1/y(7)));
+g1(3,5)=(-(params(8)*getPowerDeriv(y(5),1-params(7),1)));
 g1(4,4)=1;
-g1(4,7)=(-((-y(3))/(y(7)*y(7))));
-g1(5,8)=(-(params(1)*params(8)*(1-params(3))));
-g1(5,5)=1;
-g1(6,8)=(-(T(5)*params(1)*getPowerDeriv(params(1)*y(8),T(1),1)));
-g1(6,5)=(-(T(6)*(-(params(8)*(1-params(3))))/(y(5)*y(5))*getPowerDeriv(params(8)*(1-params(3))/y(5),T(1),1)));
-g1(6,7)=1;
+g1(4,5)=(-T(2));
+g1(5,7)=(-(params(1)*T(1)*(1-params(3))));
+g1(5,5)=(-(y(7)*params(1)*(1-params(3))*T(2)));
 
 end

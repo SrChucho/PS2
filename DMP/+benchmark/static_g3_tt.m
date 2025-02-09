@@ -13,7 +13,7 @@ function T = static_g3_tt(T, y, x, params)
 %   T         [#temp variables by 1]  double   vector of temporary terms
 %
 
-assert(length(T) >= 6);
+assert(length(T) >= 2);
 
 T = benchmark.static_g2_tt(T, y, x, params);
 

@@ -147,10 +147,35 @@ for i = 1 : 200
 
     [y, yx]      = solvex(xold, p);                 % edit this file
 
-    x            = ...;                             % apply Newton's step
+    x            = xold - yx\y ;                             % apply Newton's step, x^k+1 = x^k - J(x^k)-1f(x^k)
+                                                             % p 167 Judd (1998)
 
     fprintf('%4i %6.2e %6.2e \n', [i, norm(y), norm(x - xold)]);    
 
     if norm(y) < 1e-11 && norm(x - xold) < 1e-11 , break, end
 
 end
+
+Sii = x(1        : p.nz);
+lambdawii = x(p.nz + 1 :  end);
+purple = [0.5, 0, 0.5]; 
+
+
+figure(1)
+subplot(1, 2, 1)
+plot(zi, Sii, 'Color', purple, 'Marker', '+'); % plots data 
+hold on
+% the next line plots mode prediction
+plot(zi, oo_.dr.ys(1) + oo_.dr.ghx(oo_.dr.inv_order_var(1))*(zi - 1), '-.', 'Color', maroon)
+set(gca, 'ygrid', 'on')
+title('$S(z)$', 'Interpreter', 'Latex')
+xlabel('$z$', 'Interpreter', 'Latex')
+
+subplot(1, 2, 2)
+plot(zi, lambdawii, 'Color', purple, 'Marker', '+'); % plots data 
+hold on
+% the next line plots mode prediction
+plot(zi, oo_.dr.ys(2) + oo_.dr.ghx(oo_.dr.inv_order_var(2))*(zi - 1), '-.', 'Color', maroon)
+set(gca, 'ygrid', 'on')
+title('$\lambda_w(z)$', 'Interpreter', 'Latex')
+xlabel('$z$', 'Interpreter', 'Latex')

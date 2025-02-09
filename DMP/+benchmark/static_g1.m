@@ -18,22 +18,17 @@ function g1 = static_g1(T, y, x, params, T_flag)
 if T_flag
     T = benchmark.static_g1_tt(T, y, x, params);
 end
-g1 = zeros(6, 6);
+g1 = zeros(5, 5);
 g1(1,1)=1-(1-params(2)-params(3)*y(2))*params(1);
 g1(1,2)=(-(y(1)*params(1)*(-params(3))));
 g1(1,5)=(-1);
 g1(2,5)=1/y(5)-params(5)*1/y(5);
-g1(3,1)=(-(T(3)*params(1)*getPowerDeriv(y(1)*params(1),1-params(7),1)/params(7)));
 g1(3,2)=1;
-g1(3,4)=(-(T(4)*T(2)*(-(1-params(3)))/(y(4)*y(4))*getPowerDeriv((1-params(3))/y(4),(1-params(7))/params(7),1)/params(7)));
-g1(4,2)=(-(1/y(6)));
+g1(3,4)=(-(params(8)*getPowerDeriv(y(4),1-params(7),1)));
 g1(4,3)=1;
-g1(4,6)=(-((-y(2))/(y(6)*y(6))));
-g1(5,1)=(-(params(1)*params(8)*(1-params(3))));
-g1(5,4)=1;
-g1(6,1)=(-(T(5)*params(1)*getPowerDeriv(y(1)*params(1),T(1),1)));
-g1(6,4)=(-(T(6)*(-(params(8)*(1-params(3))))/(y(4)*y(4))*getPowerDeriv(params(8)*(1-params(3))/y(4),T(1),1)));
-g1(6,6)=1;
+g1(4,4)=(-T(2));
+g1(5,1)=(-(params(1)*T(1)*(1-params(3))));
+g1(5,4)=(-(y(1)*params(1)*(1-params(3))*T(2)));
 if ~isreal(g1)
     g1 = real(g1)+2*imag(g1);
 end

@@ -22,24 +22,21 @@ function residual = dynamic_resid(T, y, x, params, steady_state, it_, T_flag)
 if T_flag
     T = benchmark.dynamic_resid_tt(T, y, x, params, steady_state, it_);
 end
-residual = zeros(6, 1);
+residual = zeros(5, 1);
 lhs = y(2);
-rhs = y(6)-params(4)+(1-params(2)-params(3)*y(3))*params(1)*y(8);
+rhs = y(6)-params(4)+(1-params(2)-params(3)*y(3))*params(1)*y(7);
 residual(1) = lhs - rhs;
 lhs = log(y(6));
 rhs = params(5)*log(y(1))+params(6)*x(it_, 1);
 residual(2) = lhs - rhs;
 lhs = y(3);
-rhs = T(3)*T(4)/params(7);
+rhs = params(8)*y(5)^(1-params(7));
 residual(3) = lhs - rhs;
 lhs = y(4);
-rhs = y(3)/y(7);
+rhs = T(1);
 residual(4) = lhs - rhs;
-lhs = y(5);
-rhs = y(8)*params(1)*params(8)*(1-params(3));
+lhs = params(9);
+rhs = y(7)*params(1)*T(1)*(1-params(3));
 residual(5) = lhs - rhs;
-lhs = y(7);
-rhs = T(5)*T(6);
-residual(6) = lhs - rhs;
 
 end

@@ -13,9 +13,10 @@ function T = static_g1_tt(T, y, x, params)
 %   T         [#temp variables by 1]  double   vector of temporary terms
 %
 
-assert(length(T) >= 6);
+assert(length(T) >= 2);
 
 T = benchmark.static_resid_tt(T, y, x, params);
 
+T(2) = params(8)*getPowerDeriv(y(4),(-params(7)),1);
 
 end
