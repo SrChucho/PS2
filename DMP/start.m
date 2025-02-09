@@ -40,7 +40,7 @@ kappa   = (1-gamma)*B*(zss-b)/(1/beta - 1 + sigma + gamma*lambdaw);    % fixed c
 
 % save steady-state
 
-xsteady = [S; lambdaw; lambdaf; theta; kappa];
+xsteady = [S; lambdaw; lambdaf; theta];
 
 xpar    = [beta; sigma; gamma; b; rhoz; sz; alpha; B; kappa];
 
@@ -102,16 +102,18 @@ end
 
 figure(1)
 subplot(1, 2, 1)
-plot(zi, Si, 'Color', darkblue);
+plot(zi, Si, 'Color', darkblue); % plots data 
 hold on
+% the next line plots mode prediction
 plot(zi, oo_.dr.ys(1) + oo_.dr.ghx(oo_.dr.inv_order_var(1))*(zi - 1), '-.', 'Color', maroon)
 set(gca, 'ygrid', 'on')
 title('$S(z)$', 'Interpreter', 'Latex')
 xlabel('$z$', 'Interpreter', 'Latex')
 
 subplot(1, 2, 2)
-plot(zi, lambdawi, 'Color', darkblue);
+plot(zi, lambdawi, 'Color', darkblue); % plots data 
 hold on
+% the next line plots mode prediction
 plot(zi, oo_.dr.ys(2) + oo_.dr.ghx(oo_.dr.inv_order_var(2))*(zi - 1), '-.', 'Color', maroon)
 set(gca, 'ygrid', 'on')
 title('$\lambda_w(z)$', 'Interpreter', 'Latex')
