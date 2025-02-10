@@ -2,8 +2,8 @@ function x = golden(f, a, b, varargin)
 
 tol    = 1e-12;
 
-alpha1 = (3-sqrt(5))/2;
-alpha2 = (sqrt(5)-1)/2;
+alpha1 = (3-sqrt(5))/2; % 0.3820
+alpha2 = (sqrt(5)-1)/2; % 0.6180
 
 d  = b - a; 
 

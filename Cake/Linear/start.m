@@ -27,16 +27,16 @@ switch 'spli'
 
     case 'spli'
 
-        snode       = nodeunif(ns - 2, 0, 1).^3*(smax - smin) + smin; 
-        p.fspace    = fundef({'spli', snode, 0, 3});
-        s           = funnode(p.fspace);
+        snode       = nodeunif(ns - 2, 0, 1).^3*(smax - smin) + smin; % cubic transformation
+        p.fspace    = fundef({'spli', snode, 0, 3}); % defines function APROX space 
+        s           = funnode(p.fspace);             % nodes
 
 end
 
-Phi         = funbas(p.fspace, s);
+Phi         = funbas(p.fspace, s);   % evaluate matrix of nxn functions at n points in s
 
 v           = zeros(ns, 1);          % guess initial value
-theta       = Phi\v; 
+theta       = Phi\v;                 % unknown coefficients
 
 
 for i = 1 : 100
@@ -44,8 +44,10 @@ for i = 1 : 100
     thetaold   = theta;
 
     sprime     = golden('valfunc', 1e-10, s - 1e-10, s, theta, p);        % edit valfunc
+    
+    c = s - sprime;
 
-    theta      = ...;
+    theta      = (funbas(p.fspace, s) - p.beta*funbas(p.fspace, sprime))\log(c) ; % Eq (8)
 
     err        = norm(theta - thetaold)/norm(theta);
 
@@ -60,9 +62,9 @@ s          = nodeunif(10000, smin, smax);
 sprime     = golden('valfunc', 1e-10, s - 1e-10, s, theta, p); 
 
 
-v          = ...;   % LHS of Bellman Eq/  
+v          =  funbas(p.fspace, s)*theta;   % LHS of Bellman 
 
-sprimetrue = p.beta*s; 
+sprimetrue = p.beta*s;  % This is Eq (5)
 
 vtrue      = log(1 - p.beta)/(1 - p.beta) + p.beta/(1 - p.beta)^2*log(p.beta) + 1/(1 - p.beta)*log(s);
 

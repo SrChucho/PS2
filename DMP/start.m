@@ -141,7 +141,7 @@ p.zi    = zi;
 p.Pi    = Pi; 
 p.nz    = nz; 
 
-for i = 1 : 200                                            
+for i = 1 : 400                                            
 
     xold         = x; 
 
