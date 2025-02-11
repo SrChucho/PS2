@@ -18,7 +18,7 @@ smax        = 5;
 
 ns          = 251;                    % number of nodes for s
 
-switch 'spli'
+switch 'cheb'
 
     case 'cheb'
 
@@ -60,7 +60,6 @@ end
 
 s          = nodeunif(10000, smin, smax);
 sprime     = golden('valfunc', 1e-10, s - 1e-10, s, theta, p); 
-
 
 v          =  funbas(p.fspace, s)*theta;   % LHS of Bellman 
 
@@ -119,6 +118,7 @@ xlim([0.01, 5])
 figure(2)
 
 plot(s, v - funeval(theta, p.fspace, s))
+%plot(s, v - valfunc(sprime, s, theta, p))
 
 title('residuals', 'Interpreter', 'Latex')
 xlabel('$s$', 'Interpreter', 'Latex')

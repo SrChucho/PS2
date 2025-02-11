@@ -17,8 +17,8 @@ smin        = 1e-9;
 smax        = 5; 
 
 ns          = 25;                    % number of nodes for s
-
-switch 'cheb'
+p.ns        = ns;
+switch 'spli'
 
     case 'cheb'
 
@@ -33,10 +33,10 @@ switch 'cheb'
 
 end
 
-p.Phi       = funbas(p.fspace, s);  % save it to avoid recomputing it
+p.Phi       = funbas(p.fspace, s);  % save it to avoid recomputing it 25x25
 
 v           = ones(ns, 1);          % guess initial value
-theta       = ...;                  % guess theta by projecting v on p.Phi
+theta       = p.Phi\v;                  % guess theta by projecting v on p.Phi
 
 % a few value function iterations
 
@@ -44,9 +44,9 @@ for i = 1 : 5
 
     thetaold   = theta;
 
-    v          = bellman(theta, s, p);   % edit this yourselves
+    [~, ~, y, yt]  = bellman(theta, s, p);   % edit this yourselves
 
-    theta      = ...;                    % update theta by projecting v on p.Phi
+    theta      = thetaold - yt\y; %                     % update theta by projecting v on p.Phi
 
     err        = norm(theta - thetaold)/norm(theta);
 
@@ -63,7 +63,7 @@ for i = 1 : 100
 
     [~, ~, y, yt]  = bellman(theta, s, p);   % y and yt are the residuals in the Bellman equation and its Jacobian
 
-    theta          = ...;  use y and yt to update theta
+    theta          = thetaold - yt\y ;  %use y and yt to update theta
 
     err            = norm(theta - thetaold)/norm(theta);
 
