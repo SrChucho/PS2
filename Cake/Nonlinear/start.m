@@ -16,9 +16,9 @@ p.beta      = 0.95;
 smin        = 1e-9; 
 smax        = 5; 
 
-ns          = 25;                    % number of nodes for s
+ns          = 251;                    % number of nodes for s
 p.ns        = ns;
-switch 'spli'
+switch 'cheb'
 
     case 'cheb'
 
